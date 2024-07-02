@@ -35,7 +35,38 @@ The idea behind y is to create an toy array programminh language and then extend
 
 ## language:
 
+### only datataype:
+
+Similar to the [kona](https://github.com/kevinlawler/kona/wiki/C-Reference#k-object)
+and [J](https://www.jsoftware.com/ioj/iojNoun.htm#Arrays) array types.
+
+The array is in row major order (first row then column).
+
+```
+typedef {long t,c,n,r,s[1];} *A;
+t: type             => The type of the array(see below)
+c: reference count  => Garbage Collection
+n: atoms            => The number of atoms in the Object
+r: rank             => 0: one value; 1: 1D array; 2: 2D array
+s: shape            => The pointer to the data
+                    rank:
+                    0 -> pointer to the one value
+                    1 -> pointer to the size of the array, following by the data
+                    2 -> pointer to the row size, following after the column size and then the data
+```
+
+### types:
+
+```
+0 => Character/Rune (String is 1 Dimensional Array)
+1 => Integer (32 bits)
+2 => Float (64 bits)
+3 => Boolean
+```
+
 ### basic arithmetic:
+
+Using integer:
 
 ```
     1 + 2
@@ -48,30 +79,14 @@ The idea behind y is to create an toy array programminh language and then extend
 2
 ```
 
-### working with arrays:
-
-```
-    !10
-0 1 2 3 4 5 6 7 8 9
-    + !10
-9 8 7 6 5 4 3 2 1 0
-    - !10
--0 -1 -2 -3 -4 -5 -6 -7 -8 -9
-```
-
-### working with strings:
-
-```
-    'Hello, World!'
-Hello, World!
-```
-
 ### verbs:
 
-| Verb | Monadic | Dyadic | ... |
-| ---- | ------- | ------ | --- |
-| +    | flip    | plus   |     |
-| -    | negate  | minus  |     |
+| Verb | Monadic | Dyadic  | ... |
+| ---- | ------- | ------- | --- |
+| +    |         | plus    |     |
+| -    |         | minus   |     |
+| \*   |         | muliply |     |
+| /    |         | divide  |     |
 
 ### commands:
 
@@ -85,3 +100,4 @@ Hello, World!
 - https://github.com/kevinlawler/kona/wiki
 - https://code.jsoftware.com/wiki/NuVoc
 - https://www.uiua.org
+- https://github.com/cratelyn/j
