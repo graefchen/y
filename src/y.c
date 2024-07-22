@@ -1,7 +1,6 @@
-#include <stdio.h>
+#include "0.h"
 
-int main(int argc, char** argv)
-{
+I main(I c, S* v) {
 	printf("Hello, World!\n");
-	return 0;
+	R 0;
 }

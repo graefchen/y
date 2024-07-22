@@ -16,7 +16,7 @@ The idea behind y is to create an toy array programminh language and then extend
 - cross compilable (Win/Linux/Mac)
 - using bytecode vm
 - dominantly made as an interactive programming environment
-- accept utf-8
+- accept utf-8 (C11, selfbuild wrapper or Unicode parser; note: seems to be somehow very hard on windows..)
 - emojis as variables allowed
 - preprocessor step so that `over` or `über` produce a _glyphe_ (similar to UIUA)(?)
 - using only ascii chars (as they are on every\* keyboard and make things easier without isntalling additional tooling)
