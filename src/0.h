@@ -6,6 +6,7 @@
 
 typedef void* V;
 typedef int I;
+typedef long long J;
 typedef double D;
 typedef char C;
 typedef char* S;

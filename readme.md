@@ -2,6 +2,14 @@
 
 _An apl-inspired programming language in c_
 
+## Influnces
+
+- APL
+- BQN
+- J
+- K
+- Uiua
+
 ## References:
 
 1. [tavmen/buddy](https://github.com/tavmem/buddy)
@@ -12,13 +20,14 @@ _An apl-inspired programming language in c_
 6. [ngn/K](https://codeberg.org/ngn/k/)
 7. [kyte/i](https://github.com/ktye/i)
 8. [kevinlawler/kona](https://github.com/kevinlawler/kona)
-9. [Origins of J](https://www.jsoftware.com/ioj/iojATW.htm),
-   [explained](https://github.com/kelas/ooj)
-10. [k/simple, explained](https://github.com/kparc/ksimple/)
-11. [j](https://github.com/cratelyn/j)
-12. ["Why k?"](https://xpqz.github.io/kbook/Introduction.html)
-13. [ioj](https://www.jsoftware.com/ioj/ioj.htm)
-14. [Learning J](https://www.jsoftware.com/help/learning/contents.htm)
-15. [J for C Programmers](https://www.jsoftware.com/help/jforc/contents.htm)
-16. [J Primer](https://www.jsoftware.com/help/primer/contents.htm)
-17. [J Dictionary](https://www.jsoftware.com/help/dictionary/contents.htm)
+9. [Origins of J](https://www.jsoftware.com/ioj/iojATW.htm)
+10. [Origins of J, explained](https://github.com/kelas/ooj)
+11. [k/simple, explained](https://github.com/kparc/ksimple/)
+12. [j](https://github.com/cratelyn/j)
+13. ["Why k?"](https://xpqz.github.io/kbook/Introduction.html)
+14. [ioj](https://www.jsoftware.com/ioj/ioj.htm)
+15. [Learning J](https://www.jsoftware.com/help/learning/contents.htm)
+16. [J for C Programmers](https://www.jsoftware.com/help/jforc/contents.htm)
+17. [J Primer](https://www.jsoftware.com/help/primer/contents.htm)
+18. [J Dictionary](https://www.jsoftware.com/help/dictionary/contents.htm)
+19. [Comparison of array programmign languages](<https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(array)>)
