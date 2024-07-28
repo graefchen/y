@@ -1,4 +1,4 @@
-# y
+# y - language definition
 
 The idea behind y is to create an toy array programminh language and then extend it into a _real_ programming language.
 
@@ -16,11 +16,12 @@ The idea behind y is to create an toy array programminh language and then extend
 - cross compilable (Win/Linux/Mac)
 - using bytecode vm
 - dominantly made as an interactive programming environment
-- accept utf-8 (C11, selfbuild wrapper or Unicode parser; note: seems to be somehow very hard on windows...)
-- emojis as variables allowed
-- preprocessor step so that `over` or `über` produce a _glyphe_ (similar to UIUA)(?)
-- using only ascii chars (as they are on every\* keyboard and make things easier without isntalling additional tooling)
-- make it similar to lua that other people can implement it in their c programs
+- using (for now) only ascii chars (as they are on every\* keyboard and make things easier without isntalling additional tooling)
+- optional goals (sorted base on how likely I am at implementing them):
+  1. make it similar to lua that other people can implement it in their c programs
+  2. accept utf-8 (C11, selfbuild wrapper or Unicode parser; note: seems to be somehow very hard on windows...)
+  3. emojis as variables allowed
+  4. preprocessor step so that `over` or `über` produce a _glyphe_ (similar to UIUA)(?)
 
 \* at least every programmers keyboard
 
@@ -164,13 +165,35 @@ With _matrices_:
 1 2 1
 ```
 
+##### reduce/scan
+
+```
+      a <- 1 1 1 1 1
+      +/a
+5
+      +\a
+1 3 6 10 15
+      -/a
+-13
+      -\a
+1 -1 -4 -8 -13
+      */a
+120
+      *\a
+1 2 6 24 120
+      %/a
+0.0083
+      %\a
+1 0.5 0.1667 0.0417 0.0083
+```
+
 #### type declaration
 
 ```
       a <- 1 + 2
       a
  3
-      b <- x + y
+      b <- x + 1
 | undefined-variable error
 | *description*
       c <- 1 2 3 4 5 6

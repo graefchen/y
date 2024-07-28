@@ -6,8 +6,10 @@ _An apl-inspired programming language in c_
 
 - APL
 - BQN
+- Haskell
 - J
 - K
+- Purescript
 - Uiua
 
 ## References:
@@ -31,3 +33,4 @@ _An apl-inspired programming language in c_
 17. [J Primer](https://www.jsoftware.com/help/primer/contents.htm)
 18. [J Dictionary](https://www.jsoftware.com/help/dictionary/contents.htm)
 19. [Comparison of array programmign languages](<https://en.wikipedia.org/wiki/Comparison_of_programming_languages_(array)>)
+20. [The Implementtaion of Lua 5.0](https://www.lua.org/doc/jucs05.pdf)
