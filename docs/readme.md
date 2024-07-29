@@ -192,13 +192,13 @@ With _matrices_:
 ```
       a <- 1 + 2
       a
- 3
+3
       b <- x + 1
 | undefined-variable error
 | *description*
       c <- 1 2 3 4 5 6
       c
- 1 2 3 4 5 6
+1 2 3 4 5 6
       d <- 2 3 $ 1 2 3 4 5 6
       d
 1 2 3
@@ -225,9 +225,9 @@ With _matrices_:
 
 functions should all be postfix.
 
-| Name        | Monadic | Dyadic | ... |
-| ----------- | ------- | ------ | --- |
-| iota(range) | vector  | matrix |     |
+| Name        | Symbol | Monadic | Dyadic | ... |
+| ----------- | ------ | ------- | ------ | --- |
+| iota(range) | !      | vector  | matrix |     |
 
 #### commands:
 

@@ -6,7 +6,7 @@ better understandable.
 ## Internal Data Type's
 
 - 0: Character/Rune (String is 1 Dimensional Array)
-- 1: Integer (32 or 64 bits) / Boolean (0 or 1 integer)
+- 1: Integer (64 bits) / Boolean (0 or 1 integer)
 - 2: Float (64 bits)
 - 3: Box (Pointer to other Data Types)
 
@@ -26,11 +26,11 @@ long long for all values.
 
 ```c
 typedef struct array {
-  unsigned char t;
-  unsigned char c;
-  unsigned short r;
-  unsigned int n;
-  long long s[1];
+  unsigned char type;
+  unsigned char count;
+  unsigned short rank;
+  unsigned int number;
+  long long shape[1];
 } *Array;
 ```
 
@@ -54,16 +54,17 @@ typedef struct array {
 void initArray(Array array);
 void freeArray(Array array);
 void writeArray(Array array,unsigned char type, unsigned int number,
-                unsigned char rank, unsigned long long*shape);
+                unsigned char rank, long long *shape);
 ```
 
 ### Optimisation
 
 - Loop Unrolling
+- top-down while (for 10 loops something like: `int i=10;while(i!=0){i--;}`)
 - Using realloc as much as possible
 - Search for the _best_ algorithm to use
 - Size Optimization:
-  - setting
+  - playing with the order of the fields
 
 ## Compiler
 
@@ -82,7 +83,8 @@ void writeArray(Array array,unsigned char type, unsigned int number,
 
 - Instead of using `switch` use a `table`([ref](https://www.jmeiners.com/lc3-vm/#:op-table))
 - Using an Register VM instead of Stack VM
-- Use multiple different opcodes for `integers`, `floats` and `mixed`
+- Use multiple different opcodes for `integers` and `floats`
+  - when in an example an integer and an float are present -> caset integer into float
 
 ## Further Ideas and Research:
 
