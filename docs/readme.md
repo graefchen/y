@@ -38,10 +38,9 @@ The idea behind y is to create an toy array programminh language and then extend
 
 ### command line
 
-Interface over `subcommands` or `flags`?
+Interface over ~~subcommands or~~ flags~~?~~
 
-Because it want to be so small and fast ... primarely some functions over flags,
-**for now currently `none`**
+Because it want to be so small and fast ... primarely some functions over flags.
 
 Starting the repl:
 
@@ -63,36 +62,208 @@ $ y rl.y
 $ ...
 ```
 
+Printing the help message:
+
+```sh
+$ y -h
+A tiny array programming language
+Usage: y [options] [script]
+Aviable options are:
+  -h      print help message
+  -v      print version
+  -i name enter interactive shell after running script
+  -e      execute a string
+  -x      execute a string and print
+  -d      run repl/script in debug mode
+$ ...
+```
+
+Printing the version message:
+
+```sh
+$ y -v
+y 0.0.1 -- Copyright (C) @graefchen
+$ ...
+```
+
+Entering interactive shell after running script:
+
+```sh
+$ y -i rl.y
+1 0 0
+0 1 0
+0 0 1
+      10
+$ ...
+```
+
+Executing an string input:
+
+```sh
+$ y -e 10*10*10
+$ ...
+```
+
+Executing and printing an string input:
+
+```sh
+$ y -x 10*10*10
+1000
+$ ...
+```
+
+Running in debug mode:
+
+```sh
+$ y -d
+      1+1
+* TODO: add debug mode *
+2
+$ ...
+```
+
 ### language
 
 **rules:**
 
 - evaluation from right to left (except a different precedence is given)
-- all primatives can be used in two forms
+- all primatives can be used in at least two forms
   - monadic (1 argument)
   - dyadic (2 arguments)
 - expressions are executed
 - definitions are remembered
 - arrays are 1 indexed
 
-#### primatives/operators
+#### primitives
 
-primatives/operators should all be postfix when given one value and infix when
-given two values.
+| Verb | Monadic       | Dyadic                |
+| ---- | ------------- | --------------------- |
+| +    | conjugate     | addition              |
+| \-   | negate        | subtraction           |
+| \*   | signum        | muliplication         |
+| %    | reciprocal    | division              |
+| $    | shape         | reshape               |
+| !    | iota          | residue(modolu)       |
+| ^    | exponent of e | power                 |
+| =    | depth         | equal                 |
+| ==   |               | match                 |
+| <    | grade up      | less than             |
+| <=   |               | less than or equal    |
+| >=   |               | greater than or equal |
+| >    | grade down    | greater than          |
+| ~    | not           | match                 |
+| \|   | magnitude     | min                   |
+| &    | index of      | max                   |
+| \|\| |               | or                    |
+| &&   |               | and                   |
 
-| Verb | Monadic    | Dyadic        |
-| ---- | ---------- | ------------- |
-| +    |            | addition      |
-| \-   |            | subtraction   |
-| \*   |            | muliplication |
-| %    |            | division      |
-| $    | dimensions | reshape       |
-| /    |            | reduce        |
-| \\   |            | scan          |
+| Adverb | Monadic | Dyadic |
+| ------ | ------- | ------ |
+| /      | reduce  |        |
+| \\     | scan    |        |
 
-##### addition/subtraction/multiplication/division
+| Miscellanious | Definition |
+| ------------- | ---------- |
+| NB.           | comment    |
+| <-            | assign     |
 
-With _number_:
+| Command | Definition                       |
+| ------- | -------------------------------- |
+| :h      | prints a very small help command |
+| :p      | pretty printing                  |
+
+#### values
+
+```
+      1 NB. number
+1
+      8000 NB. number
+8000
+      1.2 NB. floating point number
+1.2
+      -1 NB. negative number
+_1
+      "I" NB. character/rune
+"I"
+```
+
+#### vectors
+
+```
+      1 2 3 NB. numbers
+1 2 3
+      1.2 -1.3 -1.4 NB. floating point numbers
+ 1.2 _1.3 _1.4
+      "Hello World" NB. string
+"Hello World"
+```
+
+#### matrices
+
+```
+      3 3 $ ! 9
+1 2 3
+4 5 6
+7 8 9
+      3 3 $ 3 % ! 9
+```
+
+#### comments
+
+```
+      NB. This is a comment
+      NB. There are only one line comments
+```
+
+#### type declaration
+
+```
+      a <- 1 + 2
+      a
+3
+      b <- x + 1
+| undefined-variable error
+| *description*
+      c <- 1 2 3 4 5 6
+      c
+1 2 3 4 5 6
+      d <- 2 3 $ c NB. using reshape
+      d
+1 2 3
+4 5 6
+```
+
+#### indexing
+
+```
+      a[2]
+| undefined-variable error
+| *description*
+      a <- ! 3
+      a
+1 2 3
+      a[3]
+3
+      a[1;2]
+| length error
+| *description*
+      m <- 3 3 $ ! 9
+      m
+1 2 3
+4 5 6
+7 8 9
+      m[1;1]
+1
+      m[2;]
+4 5 6
+      m[;3]
+3 6 9
+      m[3]
+| length error
+| *description*
+```
+
+#### addition/subtraction/multiplication/division
 
 ```
       1 + 2
@@ -104,16 +275,11 @@ With _number_:
       2 % 1
 2
       2 % 0
-| zero-division error
+|zero-division error
       0 % 2
-| zero-division error
+|zero-division error
       2 % 3
 0.6666666667
-```
-
-With _vectors_:
-
-```
       1 2 + 2
 3 4
       1 2 + 2 1
@@ -125,27 +291,30 @@ With _vectors_:
       2 * 1 1
 2 2
       1 1 2 2 * 2 1 1
-| length error
-| *description*
+|length error
+|*description*
       2 4 8 16 % 2
 1 2 4 8
       2 4 8 16 % 2 4 8 16
 1 1 1 1
+      (2 2 $ 1 1 1 1) + 2 2 $ 1 1 1 1
+2 2
+2 2
+      (2 2 $ 1) - 2 2 $ 1
+0 0
+0 0
+      (2 2 $ 1) * 2
+2 2
+2 2
+      (2 2 $ 1) % 2
+0.5 0.5
+0.5 0.5
 ```
 
-<!--
-TODO: Add matrice documentation
-With _matrices_:
+#### dimension/reshape
 
 ```
-
-```
--->
-
-##### dimension/reshape
-
-```
-      $1 2 3
+      $ 1 2 3
 3
       1 2 $ 2
 2 2
@@ -163,81 +332,67 @@ With _matrices_:
 1 2 1
 2 1 2
 1 2 1
+      2 3 $ 1 2
+1 2 1
+2 1 2
+      3 2 $ 1 2
+1 2
+1 2
+1 2
 ```
 
-##### reduce/scan
+#### range
 
 ```
-      a <- 1 1 1 1 1
-      +/a
-5
-      +\a
-1 3 6 10 15
-      -/a
--13
-      -\a
-1 -1 -4 -8 -13
-      */a
-120
-      *\a
-1 2 6 24 120
-      %/a
-0.0083
-      %\a
-1 0.5 0.1667 0.0417 0.0083
-```
-
-#### type declaration
-
-```
-      a <- 1 + 2
-      a
-3
-      b <- x + 1
-| undefined-variable error
-| *description*
-      c <- 1 2 3 4 5 6
-      c
-1 2 3 4 5 6
-      d <- 2 3 $ 1 2 3 4 5 6
-      d
+      ! 3
+1 2 3
+      ! 1 3
+1 2 3
+      ! 2 3
 1 2 3
 4 5 6
-```
-
-##### indexing
-
-```
-      m <- 3 3 $ 1 2 3 4 5 6 7 8 9
-      m
+      ! 3 3
 1 2 3
 4 5 6
 7 8 9
-      m[1;1]
-1
-      m[2;]
-4 5 6
-      m[;3]
-3 6 9
+      ! 2 2 2
+1 2
+3 4
+
+5 6
+7 8
+      ! 3 6
+ 1  2  4  5  6
+ 7  8  9 10 11
+12 13 14 15 16
 ```
 
-#### functions:
+#### reduce/scan
 
-functions should all be postfix.
-
-| Name        | Symbol | Monadic | Dyadic | ... |
-| ----------- | ------ | ------- | ------ | --- |
-| iota(range) | !      | vector  | matrix |     |
-
-#### commands:
-
-| Command | Definition                       |
-| ------- | -------------------------------- |
-| :help   | prints a very small help command |
+```
+      a <- 1 1 1 1 1
+      + / a
+5
+      + \ a
+1 2 3 4 5
+      - / a
+-3
+      - \ a
+1 0 -1 -2 -3
+      * / a
+1
+      * \ a
+1 1 1 1 1
+      % / a
+1
+      % \ a
+1 1 1 1 1
+```
 
 ## references:
 
 - [APL demonstration 1975 (Imperial College London)](https://youtu.be/_DTpQ4Kk2wA?si=FgDMA80LUncFFsEF)
+- [APL syntax](https://en.wikipedia.org/wiki/APL_syntax_and_symbols#Syntax_rules)
 - [kona wiki](https://github.com/kevinlawler/kona/wiki)
 - [Minimal J](https://code.jsoftware.com/wiki/User:Devon_McCormick/MinimalBeginningJ)
 - [J Nuvoc](https://code.jsoftware.com/wiki/NuVoc)

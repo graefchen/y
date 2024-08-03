@@ -42,19 +42,21 @@ typedef struct array {
   - 1: 1D array
   - 2: 2D array
   - _n_: nth D array
-- **S**hape: The pointer to the data
+- **S**hape: The pointer to the data (n+r)
   - rank 0: pointer to the one value
-  - rank 1: pointer to the size of the array, following by the data
-  - rank 2: pointer to the row size, following after the column size and then the data
-  - rank _n_: pointer to nth dimensions, following by the data
+  - rank 1: pointer to the size of the array, folloed by the data
+  - rank 2: pointer to the column size, followed after the row size and then the data
+  - rank _n_: pointer to nth dimensions, followed by the data
 
 ## Functions
 
 ```c
 void initArray(Array array);
 void freeArray(Array array);
-void writeArray(Array array,unsigned char type, unsigned int number,
+void writeArray(Array array, unsigned char type, unsigned int number,
                 unsigned char rank, long long *shape);
+void incArray(Array array);
+void decArray(Array array);
 ```
 
 ### Optimisation
@@ -68,10 +70,14 @@ void writeArray(Array array,unsigned char type, unsigned int number,
 
 ## Compiler
 
+[c.h](../../src/c.h)
+
 - _rigorous_ type-checking
 - throwing errors as fast and early as possible
 
 ## Virtual Machine
+
+[v.h](../../src/v.h)
 
 ### Opcodes
 
@@ -82,9 +88,9 @@ void writeArray(Array array,unsigned char type, unsigned int number,
 ### Optimisation
 
 - Instead of using `switch` use a `table`([ref](https://www.jmeiners.com/lc3-vm/#:op-table))
-- Using an Register VM instead of Stack VM
+- Using an Register VM instead of Stack VM (currently Stack VM)
 - Use multiple different opcodes for `integers` and `floats`
-  - when in an example an integer and an float are present -> caset integer into float
+  - when in an example an integer and an float are present -> cast integer into float
 
 ## Further Ideas and Research:
 

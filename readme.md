@@ -1,15 +1,15 @@
 # y
 
-_An apl-inspired programming language in c_
+_An array programming language in c inspired by apl, j and k_
 
-## Influnces
+## Influenced by:
 
 - APL
 - BQN
 - Haskell
 - J
 - K
-- Purescript
+- PureScript
 - Uiua
 
 ## References:
