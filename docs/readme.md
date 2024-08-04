@@ -16,7 +16,7 @@ The idea behind y is to create an toy array programminh language and then extend
 - cross compilable (Win/Linux/Mac)
 - using bytecode vm
 - dominantly made as an interactive programming environment
-- using (for now) only ascii chars (as they are on every\* keyboard and make things easier without isntalling additional tooling)
+- using (for now) only ascii chars (as they are on every\* keyboard and make things easier without installing additional tooling)
 - optional goals (sorted base on how likely I am at implementing them):
   1. make it similar to lua that other people can implement it in their c programs
   2. accept utf-8 (C11, selfbuild wrapper or Unicode parser; note: seems to be somehow very hard on windows...)
@@ -44,9 +44,11 @@ Because it want to be so small and fast ... primarely some functions over flags.
 
 Starting the repl:
 
+**not: the prompt for y are 6 empty spaces**
+
 ```sh
-$ y
-y repl
+$ y    :h for help. Ctrl+C for exit.
+y
       1 + 2
 3
 $ ...
@@ -69,12 +71,11 @@ $ y -h
 A tiny array programming language
 Usage: y [options] [script]
 Aviable options are:
-  -h      print help message
-  -v      print version
-  -i name enter interactive shell after running script
-  -e      execute a string
-  -x      execute a string and print
-  -d      run repl/script in debug mode
+  -h       print help message
+  -v       print version
+  -i       enter interactive shell after executing 'script'
+  -e stat  execute string 'stat'
+  -x stat  execute and print string 'stat'
 $ ...
 ```
 
@@ -109,16 +110,6 @@ Executing and printing an string input:
 ```sh
 $ y -x 10*10*10
 1000
-$ ...
-```
-
-Running in debug mode:
-
-```sh
-$ y -d
-      1+1
-* TODO: add debug mode *
-2
 $ ...
 ```
 
@@ -201,7 +192,7 @@ _1
 #### matrices
 
 ```
-      3 3 $ ! 9
+      3 3 $ ! 9 NB. Usage of reshape and iota
 1 2 3
 4 5 6
 7 8 9
@@ -362,9 +353,9 @@ _1
 5 6
 7 8
       ! 3 6
- 1  2  4  5  6
- 7  8  9 10 11
-12 13 14 15 16
+ 1  2  3  4  5
+ 6  7  8  9 10
+11 12 13 14 15
 ```
 
 #### reduce/scan

@@ -3,6 +3,32 @@
 **Note:** For reading purposes have the types and names been adapted to be
 better understandable.
 
+## Miscellaneous
+
+[0.h](../../src/0.h)
+
+## Arguments
+
+[a.h](../../src/a.h)
+
+### Definition
+
+```c
+typedef struct arguments {
+  bool help;
+  bool version;
+  bool interactive;
+  bool execute;
+  bool print;
+} Arguments;
+```
+
+### Function
+
+```c
+Arguments parseArguments(int argc, const char** argv);
+```
+
 ## Internal Data Type's
 
 - 0: Character/Rune (String is 1 Dimensional Array)
@@ -14,7 +40,7 @@ better understandable.
 
 [t.h](../../src/t.h)
 
-## Definition
+### Definition
 
 Similar to the [kona](https://github.com/kevinlawler/kona/wiki/C-Reference#k-object)
 and [J](https://www.jsoftware.com/ioj/iojNoun.htm#Arrays) array types.
@@ -48,13 +74,14 @@ typedef struct array {
   - rank 2: pointer to the column size, followed after the row size and then the data
   - rank _n_: pointer to nth dimensions, followed by the data
 
-## Functions
+### Functions
 
 ```c
 void initArray(Array array);
 void freeArray(Array array);
 void writeArray(Array array, unsigned char type, unsigned int number,
                 unsigned char rank, long long *shape);
+void copyArray(Array x, Array y);
 void incArray(Array array);
 void decArray(Array array);
 ```

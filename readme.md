@@ -1,4 +1,4 @@
-# y
+# y (Upsilon)
 
 _An array programming language in c inspired by apl, j and k_
 
@@ -14,15 +14,15 @@ _An array programming language in c inspired by apl, j and k_
 
 ## References:
 
-1. [tavmen/buddy](https://github.com/tavmem/buddy)
-2. [anaseto/goal](https://codeberg.org/anaseto/goal)
-3. [briangu/klongy](https://github.com/briangu/klongpy)
-4. [zholos/kuc](https://github.com/zholos/kuc/)
-5. [JohnErnest/oK](https://github.com/JohnEarnest/ok)
-6. [ngn/K](https://codeberg.org/ngn/k/)
-7. [kyte/i](https://github.com/ktye/i)
-8. [kevinlawler/kona](https://github.com/kevinlawler/kona)
-9. [Origins of J](https://www.jsoftware.com/ioj/iojATW.htm)
+1.  [tavmen/buddy](https://github.com/tavmem/buddy)
+2.  [anaseto/goal](https://codeberg.org/anaseto/goal)
+3.  [briangu/klongy](https://github.com/briangu/klongpy)
+4.  [zholos/kuc](https://github.com/zholos/kuc/)
+5.  [JohnErnest/oK](https://github.com/JohnEarnest/ok)
+6.  [ngn/K](https://codeberg.org/ngn/k/)
+7.  [kyte/i](https://github.com/ktye/i)
+8.  [kevinlawler/kona](https://github.com/kevinlawler/kona)
+9.  [Origins of J](https://www.jsoftware.com/ioj/iojATW.htm)
 10. [Origins of J, explained](https://github.com/kelas/ooj)
 11. [k/simple, explained](https://github.com/kparc/ksimple/)
 12. [j](https://github.com/cratelyn/j)
