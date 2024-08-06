@@ -38,13 +38,13 @@ The idea behind y is to create an toy array programminh language and then extend
 
 ### command line
 
-Interface over ~~subcommands or~~ flags~~?~~
+Interface over ~~subcommands or~~ flags
 
 Because it want to be so small and fast ... primarely some functions over flags.
 
 Starting the repl:
 
-**not: the prompt for y are 6 empty spaces**
+**note: the prompt for y are 6 empty spaces**
 
 ```sh
 $ y    :h for help. Ctrl+C for exit.
