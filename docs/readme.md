@@ -150,6 +150,7 @@ $ ...
 
 | Adverb | Monadic | Dyadic |
 | ------ | ------- | ------ |
+| '      | each    |        |
 | /      | reduce  |        |
 | \\     | scan    |        |
 
@@ -378,6 +379,9 @@ _1
 1
       % \ a
 1 1 1 1 1
+      b <- 2 2 $ 1 1 1 1 NB. create an 2 x 2 matrix filled with 1's
+      + / b              NB. showing that multidimensional arrays are reduced by 1 dimension
+2 2
 ```
 
 ## references:

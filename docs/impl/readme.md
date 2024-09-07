@@ -33,13 +33,13 @@ Arguments parseArguments(int argc, const char** argv);
 
 0. ~~
 1. Character/Rune (String is 1 Dimensional Array)
-1. Integer (64 bits)
-1. Boolean (0 or 1 integer)
-1. Float (64 bits)
-1. null
-1. Dictionarys
-1. Complex Number (?)
-1. Box (Pointer to other Data Types) (?)
+2. Integer (64 bits)
+3. Boolean (0 or 1 integer)
+4. Float (64 bits)
+5. null
+6. Dictionarys
+7. Complex Number (?)
+8. Box (Pointer to other Data Types) (?)
 
 ## Array's
 
