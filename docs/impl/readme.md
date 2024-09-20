@@ -1,7 +1,9 @@
 # y - implementation
 
-**Note:** For reading purposes have the types and names been adapted to be
-better understandable.
+> [!NOTE]
+> For reading purposes have the types and names been adapted to be
+> better understandable, furthermore will be all code be written in C.
+> This shall be only seen as a _reference_ implementation.
 
 ## Miscellaneous
 
@@ -26,7 +28,7 @@ typedef struct arguments {
 ### Function
 
 ```c
-Arguments parseArguments(int argc, const char** argv);
+void parseArguments(Arguments args, int argc, const char** argv);
 ```
 
 ## Internal Data Type's
@@ -131,5 +133,6 @@ void decArray(Array array);
 - Performance:
   - [lobster performance tag](https://lobste.rs/t/performance)
   - [MIT 6.172 Performance Engineering](https://youtube.com/playlist?list=PLUl4u3cNGP63VIBQVWguXxZZi0566y7Wf&si=Hq9P8cj6_2mqzfC_)
+  - looking also at hardware restrictions [ref](https://www.youtube.com/watch?v=Ca1hHC2EctY)
 - size optimisations:
   - look at allignment of structs(because padding), [ref](https://youtu.be/443UNeGrFoM?si=_HtXiK-7jGv6LeoB&t=4596)

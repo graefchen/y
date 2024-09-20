@@ -2,6 +2,14 @@
 
 The idea behind y is to create an toy array programminh language and then extend it into a _real_ programming language.
 
+## purpose of this document
+
+> [!NOTE]
+> While _y_ will be written in C and will be (for now) only be supported by me only in C, the purpose of this document
+> will try to guide the language implementation to help create new implemantations of y in other programming languages.
+> Furthermore this document shall be used to terminate ambiguity and describe corner cases and how you shall deal when
+> specific corner cases occur.
+
 ## base ideas
 
 - like APl, J, K, BQN, UIUA
@@ -113,6 +121,26 @@ $ y -x 10*10*10
 $ ...
 ```
 
+Alternitive options with executing a string input:
+
+```sh
+$ y -e 10*10*10
+$ ...
+```
+
+Executing and printing an string input:
+
+```sh
+$ y -x "10 * 10 * 10"
+1000
+$ ...
+```
+
+```sh
+$ y -e "10 * 10 * 10"
+$ ...
+```
+
 ### language
 
 **rules:**
@@ -124,6 +152,15 @@ $ ...
 - expressions are executed
 - definitions are remembered
 - arrays are 1 indexed
+
+#### (dynamic)types
+
+- Character/Rune
+- Integer
+- Boolean
+- Float
+- null
+- Dictionarys
 
 #### primitives
 
@@ -143,10 +180,8 @@ $ ...
 | >=   |               | greater than or equal |
 | >    | grade down    | greater than          |
 | ~    | not           | match                 |
-| \|   | magnitude     | min                   |
-| &    | index of      | max                   |
-| \|\| |               | or                    |
-| &&   |               | and                   |
+| \|   | magnitude     | min/(binary)or        |
+| &    | index of      | max/(binary)and       |
 
 | Adverb | Monadic | Dyadic |
 | ------ | ------- | ------ |
@@ -154,10 +189,11 @@ $ ...
 | /      | reduce  |        |
 | \\     | scan    |        |
 
-| Miscellanious | Definition |
-| ------------- | ---------- |
-| NB.           | comment    |
-| <-            | assign     |
+| Miscellanious | Definition     |
+| ------------- | -------------- |
+| //            | comment        |
+| <-            | assign         |
+| load          | loading script |
 
 | Command | Definition                       |
 | ------- | -------------------------------- |
@@ -167,33 +203,33 @@ $ ...
 #### values
 
 ```
-      1 NB. number
+      1 // number
 1
-      8000 NB. number
+      8000 // number
 8000
-      1.2 NB. floating point number
+      1.2 // floating point number
 1.2
-      -1 NB. negative number
+      -1 // negative number
 _1
-      "I" NB. character/rune
+      "I" // character/rune
 "I"
 ```
 
 #### vectors
 
 ```
-      1 2 3 NB. numbers
+      1 2 3 // numbers
 1 2 3
-      1.2 -1.3 -1.4 NB. floating point numbers
+      1.2 -1.3 -1.4 // floating point numbers
  1.2 _1.3 _1.4
-      "Hello World" NB. string
+      "Hello World" // string
 "Hello World"
 ```
 
 #### matrices
 
 ```
-      3 3 $ ! 9 NB. Usage of reshape and iota
+      3 3 $ ! 9 // Usage of reshape and iota
 1 2 3
 4 5 6
 7 8 9
@@ -203,8 +239,8 @@ _1
 #### comments
 
 ```
-      NB. This is a comment
-      NB. There are only one line comments
+      // This is a comment
+      // There are only one line comments
 ```
 
 #### type declaration
@@ -219,7 +255,7 @@ _1
       c <- 1 2 3 4 5 6
       c
 1 2 3 4 5 6
-      d <- 2 3 $ c NB. using reshape
+      d <- 2 3 $ c // using reshape
       d
 1 2 3
 4 5 6
@@ -379,9 +415,14 @@ _1
 1
       % \ a
 1 1 1 1 1
-      b <- 2 2 $ 1 1 1 1 NB. create an 2 x 2 matrix filled with 1's
-      + / b              NB. showing that multidimensional arrays are reduced by 1 dimension
+      b <- 2 2 $ 1 1 1 1 // create an 2 x 2 matrix filled with 1's
+      b
+1 1
+1 1
+      + / b // showing that multidimensional arrays are reduced by 1 dimension
 2 2
+      + / 1 // if an array is 1 dimenson long, the reduce is just ignored
+1
 ```
 
 ## references:
