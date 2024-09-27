@@ -18,6 +18,7 @@ The idea behind y is to create an toy array programminh language and then extend
 - only _one_ data type
 - pointless
 - unmutable
+- self-contained (static executable and not dynamically linked)
 
 ## goals
 
@@ -195,10 +196,17 @@ $ ...
 | <-            | assign         |
 | load          | loading script |
 
-| Command | Definition                       |
-| ------- | -------------------------------- |
-| :h      | prints a very small help command |
-| :p      | pretty printing                  |
+> [!NOTE]
+> Commands are not really part of the language but of the repl.
+> That is why they are also described here.
+
+| Command | Definition                               |
+| ------- | ---------------------------------------- |
+| :h      | prints a very small help command         |
+| :p      | pretty printing                          |
+| :e      | open editor                              |
+| :edit   | s.a.                                     |
+| :!      | execute a command line command(ls, etc.) |
 
 #### values
 
