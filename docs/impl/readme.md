@@ -28,7 +28,8 @@ typedef struct arguments {
 ### Function
 
 ```c
-void parseArguments(Arguments args, int argc, const char** argv);
+// Parsing the Argumens from *argv*
+void parseArguments(Arguments* args, int argc, const char** argv);
 ```
 
 ## Internal Data Type's
@@ -40,8 +41,9 @@ void parseArguments(Arguments args, int argc, const char** argv);
 4. Float (64 bits)
 5. null
 6. Dictionarys
-7. Complex Number (?)
-8. Box (Pointer to other Data Types) (?)
+7. Time
+8. Complex Number (?)
+9. Box (Pointer to other Data Types) (?)
 
 ## Array's
 
@@ -81,15 +83,91 @@ typedef struct array {
   - rank 2: pointer to the column size, followed after the row size and then the data
   - rank _n_: pointer to nth dimensions, followed by the data
 
+**Shape Examples:**
+
+The 1D number `1.3` has the shape of:
+
+```
+pos:      0
+shape: [1.3]
+```
+
+_visualised:_
+
+```
++---+
+|1.3|
++---+
+```
+
+The 2D array of the numbers `1`, `2` and `3` has the shape of:
+
+```
+pos:    0 1 2 3
+shape: [3 1 2 3]
+```
+
+_visualised:_
+
+```
++-----+
+|1 2 3|
++-----+
+```
+
+The 3D array of the numbers `1`, `2` and `3`, with only one number per row and 3
+rows in total has the shape of:
+
+```
+pos:    0 1 2 3 4
+shape: [1 3 1 2 3]
+```
+
+_visualised:_
+
+```
++-+
+|1|
++-+
+|2|
++-+
+|3|
++-+
+```
+
+The 4D array of the numbers `1`, `2`, `3`, `4`, `5` and `6` with only two numbers
+per only one row in the table and three tables has the shape of:
+
+```
+pos:    0 1 2 3 4 5 6 7 8
+shape: [2 1 3 1 2 3 4 5 6]
+```
+
+_visualised:_
+
+```
++---+ +---+ +---+
+|1 2| |3 4| |5 6|
++---+ +---+ +---+
+```
+
 ### Functions
 
 ```c
+// Initialising an Array
 void initArray(Array array);
+// Freeing an Array
 void freeArray(Array array);
+// Writing an Array, with a *type*, *number*, *rank* and the *shape*
 void writeArray(Array array, unsigned char type, unsigned int number,
                 unsigned char rank, long long *shape);
-void copyArray(Array x, Array y);
+// Copying the Array *from* into the Array *to*
+void copyArray(Array from, Array to);
+// Copying the Data of an Array *from* into the Array *to* with an *offset*
+void copyArrayData(Array from, Array to, unsigned int offset)
+// Incrementing the Reference Count of an Array
 void incArray(Array array);
+// Decrementing the Reference Count of an Array
 void decArray(Array array);
 ```
 
@@ -101,6 +179,7 @@ void decArray(Array array);
 - Search for the _best_ algorithm to use
 - Size Optimization:
   - playing with the order of the fields
+  - check out the difference between 32 bit and 64 bit OS, etc.
 
 ## Compiler
 
@@ -122,7 +201,7 @@ void decArray(Array array);
 ### Optimisation
 
 - Instead of using `switch` use a `table`([ref](https://www.jmeiners.com/lc3-vm/#:op-table))
-- Using an Register VM instead of Stack VM (currently Stack VM)
+- Using an Register VM instead of Stack VM (currently planned Stack VM)
 - Use multiple different opcodes for `integers` and `floats`
   - when in an example an integer and an float are present -> cast integer into float
 

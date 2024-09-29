@@ -182,7 +182,7 @@ $ ...
 | >    | grade down    | greater than          |
 | ~    | not           | match                 |
 | \|   | magnitude     | min/(binary)or        |
-| &    | index of      | max/(binary)and       |
+| &    | Where(?)      | max/(binary)and       |
 
 | Adverb | Monadic | Dyadic |
 | ------ | ------- | ------ |
@@ -190,11 +190,10 @@ $ ...
 | /      | reduce  |        |
 | \\     | scan    |        |
 
-| Miscellanious | Definition     |
-| ------------- | -------------- |
-| //            | comment        |
-| <-            | assign         |
-| load          | loading script |
+| Miscellanious | Definition |
+| ------------- | ---------- |
+| //            | comment    |
+| <-            | assign     |
 
 > [!NOTE]
 > Commands are not really part of the language but of the repl.
@@ -205,7 +204,7 @@ $ ...
 | :h      | prints a very small help command         |
 | :p      | pretty printing                          |
 | :e      | open editor                              |
-| :edit   | s.a.                                     |
+| :edit   | v.s.                                     |
 | :!      | execute a command line command(ls, etc.) |
 
 #### values
@@ -432,6 +431,12 @@ _1
       + / 1 // if an array is 1 dimenson long, the reduce is just ignored
 1
 ```
+
+#### inbuild function's
+
+| name | description                    |
+| ---- | ------------------------------ |
+| load | loads a y file into the source |
 
 ## references:
 
