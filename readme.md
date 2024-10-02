@@ -12,6 +12,17 @@ _An array programming language in c inspired by apl, j and k_
 - PureScript
 - Uiua
 
+# ToDo:
+
+- [ ] Planning
+  - [ ] Command Line Interface
+  - [ ] Core Language
+- [ ] Implementing
+  - [ ] Lexer
+  - [ ] Compiler
+  - [ ] VM
+  - [ ] ...
+
 ## References:
 
 1.  [tavmen/buddy](https://github.com/tavmem/buddy)

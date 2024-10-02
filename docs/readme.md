@@ -165,30 +165,32 @@ $ ...
 
 #### primitives
 
-| Verb | Monadic       | Dyadic                |
-| ---- | ------------- | --------------------- |
-| +    | conjugate     | addition              |
-| \-   | negate        | subtraction           |
-| \*   | signum        | muliplication         |
-| %    | reciprocal    | division              |
-| $    | shape         | reshape               |
-| !    | iota          | residue(modolu)       |
-| ^    | exponent of e | power                 |
-| =    | depth         | equal                 |
-| ==   |               | match                 |
-| <    | grade up      | less than             |
-| <=   |               | less than or equal    |
-| >=   |               | greater than or equal |
-| >    | grade down    | greater than          |
-| ~    | not           | match                 |
-| \|   | magnitude     | min/(binary)or        |
-| &    | Where(?)      | max/(binary)and       |
+| Verb | Monadic         | Dyadic                            |
+| ---- | --------------- | --------------------------------- |
+| +    | conjugate       | [addition](#addition)             |
+| \-   | negate          | [subtraction](#subtraction)       |
+| \*   | signum          | [muliplication](#multipllication) |
+| %    | reciprocal      | [division](#division)             |
+| $    | [shape](#shape) | [reshape](#reshape)               |
+| !    | [range](#range) | residue(modolu)                   |
+| ^    | exponent of e   | power                             |
+| =    | depth           | equal                             |
+| ==   |                 | match                             |
+| <    | grade up        | less than                         |
+| <=   |                 | less than or equal                |
+| >=   |                 | greater than or equal             |
+| >    | grade down      | greater than                      |
+| ~    | not             | match                             |
+| \|   | magnitude       | min/(binary)or                    |
+| &    | Where(?)        | max/(binary)and                   |
 
-| Adverb | Monadic | Dyadic |
-| ------ | ------- | ------ |
-| '      | each    |        |
-| /      | reduce  |        |
-| \\     | scan    |        |
+| Adverb | Definition        |
+| ------ | ----------------- |
+| /      | [reduce](#reduce) |
+| \\     | [scan](#scan)     |
+| '      | each              |
+| /:(?)  | each right        |
+| \\:(?) | each left         |
 
 | Miscellanious | Definition |
 | ------------- | ---------- |
@@ -214,9 +216,9 @@ $ ...
 1
       8000 // number
 8000
-      1.2 // floating point number
+      1.2 // (floating point) number
 1.2
-      -1 // negative number
+      -1 // (negative) number
 _1
       "I" // character/rune
 "I"
@@ -227,7 +229,7 @@ _1
 ```
       1 2 3 // numbers
 1 2 3
-      1.2 -1.3 -1.4 // floating point numbers
+      1.2 -1.3 -1.4 // (floating point) numbers
  1.2 _1.3 _1.4
       "Hello World" // string
 "Hello World"
@@ -240,7 +242,6 @@ _1
 1 2 3
 4 5 6
 7 8 9
-      3 3 $ 3 % ! 9
 ```
 
 #### comments
@@ -298,29 +299,37 @@ _1
 | *description*
 ```
 
-#### addition/subtraction/multiplication/division
+#### addition
 
 ```
       1 + 2
 3
-      2 - 1
-1
-      1 * 2
-2
-      2 % 1
-2
-      2 % 0
-|zero-division error
-      0 % 2
-|zero-division error
-      2 % 3
-0.6666666667
       1 2 + 2
 3 4
       1 2 + 2 1
 3 3
+      (2 2 $ 1 1 1 1) + 2 2 $ 1 1 1 1
+2 2
+2 2
+```
+
+#### subtraction
+
+```
+      2 - 1
+1
       2 2 2 - 1 1 1
 1 1 1
+      (2 2 $ 1) - 2 2 $ 1
+0 0
+0 0
+```
+
+#### multiplication
+
+```
+      1 * 2
+2
       1 1 * 2
 2 2
       2 * 1 1
@@ -328,29 +337,39 @@ _1
       1 1 2 2 * 2 1 1
 |length error
 |*description*
+      (2 2 $ 1) * 2
+2 2
+2 2
+```
+
+#### division
+
+```
+      2 % 0
+|zero-division error
+      0 % 2
+|zero-division error
+      2 % 3
+0.6666666667
       2 4 8 16 % 2
 1 2 4 8
       2 4 8 16 % 2 4 8 16
 1 1 1 1
-      (2 2 $ 1 1 1 1) + 2 2 $ 1 1 1 1
-2 2
-2 2
-      (2 2 $ 1) - 2 2 $ 1
-0 0
-0 0
-      (2 2 $ 1) * 2
-2 2
-2 2
       (2 2 $ 1) % 2
 0.5 0.5
 0.5 0.5
 ```
 
-#### dimension/reshape
+#### shape
 
 ```
       $ 1 2 3
 3
+```
+
+#### reshape
+
+```
       1 2 $ 2
 2 2
       2 1 $ 2
@@ -402,26 +421,18 @@ _1
 11 12 13 14 15
 ```
 
-#### reduce/scan
+#### reduce
 
 ```
       a <- 1 1 1 1 1
       + / a
 5
-      + \ a
-1 2 3 4 5
       - / a
 -3
-      - \ a
-1 0 -1 -2 -3
       * / a
 1
-      * \ a
-1 1 1 1 1
       % / a
 1
-      % \ a
-1 1 1 1 1
       b <- 2 2 $ 1 1 1 1 // create an 2 x 2 matrix filled with 1's
       b
 1 1
@@ -430,6 +441,20 @@ _1
 2 2
       + / 1 // if an array is 1 dimenson long, the reduce is just ignored
 1
+```
+
+#### scan
+
+```
+      a <- 1 1 1 1 1
+      + \ a
+1 2 3 4 5
+      - \ a
+1 0 -1 -2 -3
+      * \ a
+1 1 1 1 1
+      % \ a
+1 1 1 1 1
 ```
 
 #### inbuild function's
