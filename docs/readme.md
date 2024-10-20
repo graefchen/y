@@ -192,14 +192,17 @@ $ ...
 | /:(?)  | each right        |
 | \\:(?) | each left         |
 
-| Miscellanious | Definition |
-| ------------- | ---------- |
-| //            | comment    |
-| <-            | assign     |
+| Miscellanious                                | Definition      |
+| -------------------------------------------- | --------------- |
+| //                                           | comment         |
+| <-                                           | assign          |
+| fn _name_ {_p1_,_p2_,_..._,_pn_;_operation_} | function assign |
+| _function_ {_p1_,_p2_,_..._,_pn_}            | function call   |
 
 > [!NOTE]
 > Commands are not really part of the language but of the repl.
-> That is why they are also described here.
+> That is why they are also described here under the primitives
+> of the language section.
 
 | Command | Definition                               |
 | ------- | ---------------------------------------- |

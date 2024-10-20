@@ -65,7 +65,7 @@ typedef struct array {
   unsigned char count;
   unsigned short rank;
   unsigned int number;
-  long long shape[1];
+  void *shape;
 } *Array;
 ```
 
@@ -160,7 +160,7 @@ void initArray(Array array);
 void freeArray(Array array);
 // Writing an Array, with a *type*, *number*, *rank* and the *shape*
 void writeArray(Array array, unsigned char type, unsigned int number,
-                unsigned char rank, long long *shape);
+                unsigned char rank, void *shape);
 // Copying the Array *from* into the Array *to*
 void copyArray(Array from, Array to);
 // Copying the Data of an Array *from* into the Array *to* with an *offset*

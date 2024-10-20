@@ -14,7 +14,7 @@
 
 // Array
 // type,reference count,rank,atoms,shape(pointer)
-typedef struct a{u8 t,c;u16 r;u32 n;i64 s[1];}*A;
+typedef struct a{u8 t,c;u16 r;u32 n;V*s;}*A;
 // init Array
 V initA(A*a);
 // free Array
