@@ -103,8 +103,8 @@ _visualised:_
 The 2D array of the numbers `1`, `2` and `3` has the shape of:
 
 ```
-pos:    0 1 2 3
-shape: [3 1 2 3]
+pos:    0 1 2 3 4
+shape: [1 3 1 2 3]
 ```
 
 _visualised:_
@@ -113,42 +113,6 @@ _visualised:_
 +-----+
 |1 2 3|
 +-----+
-```
-
-The 3D array of the numbers `1`, `2` and `3`, with only one number per row and 3
-rows in total has the shape of:
-
-```
-pos:    0 1 2 3 4
-shape: [1 3 1 2 3]
-```
-
-_visualised:_
-
-```
-+-+
-|1|
-+-+
-|2|
-+-+
-|3|
-+-+
-```
-
-The 4D array of the numbers `1`, `2`, `3`, `4`, `5` and `6` with only two numbers
-per only one row in the table and three tables has the shape of:
-
-```
-pos:    0 1 2 3 4 5 6 7 8
-shape: [2 1 3 1 2 3 4 5 6]
-```
-
-_visualised:_
-
-```
-+---+ +---+ +---+
-|1 2| |3 4| |5 6|
-+---+ +---+ +---+
 ```
 
 ### Functions
@@ -169,6 +133,8 @@ void copyArrayData(Array from, Array to, unsigned int offset)
 void incArray(Array array);
 // Decrementing the Reference Count of an Array
 void decArray(Array array);
+// Printing the Array
+void printArray(Array array);
 ```
 
 ### Optimisation
