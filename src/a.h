@@ -5,8 +5,8 @@
 #include "0.h"
 
 // arguments struct
-typedef struct args{B h,v,i,e,x;}Args;
+typedef struct ar{B h,v,i,e,x;}Ar;
 
-Args parseArgs(i32 c,cS*v);
+void pA(Ar*a,i32 c,cS*v);
 
 #endif

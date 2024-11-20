@@ -37,8 +37,8 @@ void parseArguments(Arguments* args, int argc, const char** argv);
 0. ~~
 1. Character/Rune (String is 1 Dimensional Array)
 2. Integer (64 bits)
-3. Boolean (0 or 1 integer)
-4. Float (64 bits)
+3. Float (64 bits)
+4. Boolean (0 or 1 integer)
 5. null
 6. Dictionarys
 7. Time
@@ -66,7 +66,7 @@ typedef struct array {
   unsigned short rank;
   unsigned int number;
   void *shape;
-} *Array;
+} Array;
 ```
 
 - **T**ype: The type of the array (v.s.)
@@ -119,22 +119,28 @@ _visualised:_
 
 ```c
 // Initialising an Array
-void initArray(Array array);
+void initArray(Array *array);
 // Freeing an Array
-void freeArray(Array array);
+void freeArray(Array *array);
 // Writing an Array, with a *type*, *number*, *rank* and the *shape*
-void writeArray(Array array, unsigned char type, unsigned int number,
+void writeArray(Array *array, unsigned char type, unsigned int number,
                 unsigned char rank, void *shape);
 // Copying the Array *from* into the Array *to*
-void copyArray(Array from, Array to);
+void copyArray(Array *from, Array *to);
 // Copying the Data of an Array *from* into the Array *to* with an *offset*
-void copyArrayData(Array from, Array to, unsigned int offset)
+void copyArrayData(Array *from, Array to, unsigned int offset)
 // Incrementing the Reference Count of an Array
-void incArray(Array array);
+void incArray(Array *array);
 // Decrementing the Reference Count of an Array
-void decArray(Array array);
+void decArray(Array *array);
 // Printing the Array
-void printArray(Array array);
+void printArray(Array *array);
+// Getting the size of the Array
+unsigned int ArraySize(Array *array);
+// Getting the dimensions of the Array
+unsigned short ArrayDimensions(Array *array);
+// Getting the type of the Array
+unsigned short ArrayType(Array *array);
 ```
 
 ### Optimisation
